@@ -113,11 +113,46 @@ const data = [
 
 */
 
-const newsfeedComponent = () => {
-  const title = document.createElement('h2')
-  const date = document.createElement('p')
-  const p1 = document.createElement('p')
-  const p2 = document.createElement('p')
-  const p3 = document.createElement('p')
+const articles = document.querySelector('.articles')
+
+
+const newsfeedComponent = (data) => {
+  const article = document.createElement('div')
+  const h2 = document.createElement('h2')
+  const day = document.createElement('p')
+  const para1 = document.createElement('p')
+  const para2 = document.createElement('p')
+  const para3 = document.createElement('p')
   const expandButton = document.createElement('span')
+
+  article.appendChild(h2)
+  article.appendChild(day)
+  article.appendChild(para1)
+  article.appendChild(para2)
+  article.appendChild(para3)
+  article.appendChild(expandButton)
+
+  h2.textContent = data.title
+  day.textContent = data.date
+  para1.textContent = data.firstParagraph
+  para2.textContent = data.secondParagraph
+  para3.textContent = data.thirdParagraph
+  expandButton.textContent = 'Click Me'
+
+  article.classList.add('article')
+  day.classList.add('date')
+  expandButton.classList.add('expandButton')
+
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
+
+  return article
 }
+
+
+
+data.forEach(data => {
+  articles.appendChild(newsfeedComponent(data));
+});
+
